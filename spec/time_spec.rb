@@ -6,6 +6,7 @@ require 'json'
 describe Time, "#to_json" do
 
   before do
+    @sample   = Time.utc(2008, 3, 28, 22, 54, 20)
     @expected = "\"2008-03-28T22:54:20Z\""
   end
 
@@ -13,6 +14,14 @@ describe Time, "#to_json" do
     Time.utc(2008, 3, 28, 22, 54, 20).to_json.should == @expected
     Time.xmlschema("2008-03-28T22:54:20Z").to_json.should == @expected
     Time.xmlschema("2008-03-28T17:54:20-05:00").to_json.should == @expected
+  end
+
+  it "should not raise exception when passed arguments" do
+    lambda { @sample.to_json( :only => [:year] ) }.should_not raise_error
+  end
+
+  it "should not raise exception when contained in other object" do
+    lambda { [ @sample ].to_json }.should_not raise_error
   end
 end
 
