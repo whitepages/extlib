@@ -12,8 +12,8 @@ class Time
   #   ISO 8601 compatible representation of the Time object.
   #
   # @api public
-  def to_json(*)
-    self.xmlschema.to_json
+  def to_json(*args)
+    self.xmlschema.to_json(*args)
   end
 
   ##

@@ -408,9 +408,9 @@ class Dictionary
     ary
   end
 
-  def to_json
+  def to_json(*args)
     '[' +
-    map { |k,v| "#{k.to_json}, #{v.to_json}" }.
+    map { |k,v| "#{k.to_json(*args)}, #{v.to_json(*args)}" }.
     join(", ") +
     ']'
   end
